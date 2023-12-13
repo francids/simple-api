@@ -5,93 +5,9 @@ import json
 
 app: FastAPI = FastAPI()
 
-users = [
-    {
-        "id": 1,
-        "username": "fmesa",
-        "name": "Francisco",
-        "last_name": "Mesa",
-        "email": "fmesa@mail.com",
-        "date_of_birth": "2003-01-15",
-    },
-    {
-        "id": 2,
-        "username": "dtorres",
-        "name": "David",
-        "last_name": "Torres",
-        "email": "dtorres@mail.com",
-        "date_of_birth": "2000-05-21",
-    },
-    {
-        "id": 3,
-        "username": "jlopez",
-        "name": "Juan",
-        "last_name": "López",
-        "email": "jlopez@mail.com",
-        "date_of_birth": "1999-12-31",
-    },
-    {
-        "id": 4,
-        "username": "adiaz",
-        "name": "Ana",
-        "last_name": "Díaz",
-        "email": "adiaz@mail.com",
-        "date_of_birth": "1995-06-30",
-    },
-    {
-        "id": 5,
-        "username": "jgarcia",
-        "name": "Julia",
-        "last_name": "García",
-        "email": "jgarcia@mail.com",
-        "date_of_birth": "2002-11-10",
-    },
-    {
-        "id": 6,
-        "username": "jgutierrez",
-        "name": "Juan",
-        "last_name": "Gutiérrez",
-        "email": "jgutierrez",
-        "date_of_birth": "2001-01-01",
-    },
-    {
-        "id": 7,
-        "username": "mmartinez",
-        "name": "Maria",
-        "last_name": "Martínez",
-        "email": "mmartinez@mail.com",
-        "date_of_birth": "1998-02-28",
-    },
-    {
-        "id": 8,
-        "username": "mrodriguez",
-        "name": "Manuel",
-        "last_name": "Rodríguez",
-        "email": "mrodriguez@mail.com",
-        "date_of_birth": "1997-03-15",
-    },
-    {
-        "id": 9,
-        "username": "cfernandez",
-        "name": "Carlos",
-        "last_name": "Fernández",
-        "email": "cfernandez@mail.com",
-        "date_of_birth": "1996-04-30",
-    },
-    {
-        "id": 10,
-        "username": "mgonzalez",
-        "name": "Marta",
-        "last_name": "González",
-        "email": "mgonzalez@mail.com",
-        "date_of_birth": "2004-07-20",
-    },
-]
-
-
 @app.get("/")
 async def root() -> object:
-    return {"message": "Hola"}
+    return JSONResponse(content={"OK": True})
 
 
 @app.get("/users")
@@ -104,5 +20,8 @@ async def get_users() -> object:
 
 @app.get("/users/{user_id}")
 async def get_user(user_id: int) -> object:
-    user = [user for user in users if user["id"] == user_id] or {"message": "User not found"}
-    return JSONResponse(content=jsonable_encoder(user))
+    with open("users.json", "r") as file:
+        users_data = json.load(file)
+    
+    user_data = [user for user in users_data if user["id"] == user_id] or {"message": "User not found"}
+    return JSONResponse(content=jsonable_encoder(user_data))
