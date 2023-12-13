@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from fastapi.encoders import jsonable_encoder
 from fastapi.responses import JSONResponse
+import json
 
 app: FastAPI = FastAPI()
 
@@ -25,7 +26,7 @@ users = [
         "id": 3,
         "username": "jlopez",
         "name": "Juan",
-        "last_name": "Lopez",
+        "last_name": "López",
         "email": "jlopez@mail.com",
         "date_of_birth": "1999-12-31",
     },
@@ -41,10 +42,50 @@ users = [
         "id": 5,
         "username": "jgarcia",
         "name": "Julia",
-        "last_name": "Garcia",
+        "last_name": "García",
         "email": "jgarcia@mail.com",
         "date_of_birth": "2002-11-10",
-    }
+    },
+    {
+        "id": 6,
+        "username": "jgutierrez",
+        "name": "Juan",
+        "last_name": "Gutiérrez",
+        "email": "jgutierrez",
+        "date_of_birth": "2001-01-01",
+    },
+    {
+        "id": 7,
+        "username": "mmartinez",
+        "name": "Maria",
+        "last_name": "Martínez",
+        "email": "mmartinez@mail.com",
+        "date_of_birth": "1998-02-28",
+    },
+    {
+        "id": 8,
+        "username": "mrodriguez",
+        "name": "Manuel",
+        "last_name": "Rodríguez",
+        "email": "mrodriguez@mail.com",
+        "date_of_birth": "1997-03-15",
+    },
+    {
+        "id": 9,
+        "username": "cfernandez",
+        "name": "Carlos",
+        "last_name": "Fernández",
+        "email": "cfernandez@mail.com",
+        "date_of_birth": "1996-04-30",
+    },
+    {
+        "id": 10,
+        "username": "mgonzalez",
+        "name": "Marta",
+        "last_name": "González",
+        "email": "mgonzalez@mail.com",
+        "date_of_birth": "2004-07-20",
+    },
 ]
 
 
@@ -55,7 +96,10 @@ async def root() -> object:
 
 @app.get("/users")
 async def get_users() -> object:
-    return JSONResponse(content=jsonable_encoder(users))
+    with open("users.json", "r") as file:
+        users_data = json.load(file)
+
+    return JSONResponse(content=jsonable_encoder(users_data))
 
 
 @app.get("/users/{user_id}")
