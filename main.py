@@ -5,6 +5,7 @@ import json
 
 app: FastAPI = FastAPI()
 
+
 @app.get("/")
 async def root() -> object:
     return JSONResponse(content={"OK": True})
@@ -22,6 +23,8 @@ async def get_users() -> object:
 async def get_user(user_id: int) -> object:
     with open("users.json", "r") as file:
         users_data = json.load(file)
-    
-    user_data = [user for user in users_data if user["id"] == user_id] or {"message": "User not found"}
+
+    user_data = [user for user in users_data if user["id"] == user_id] or None
+    if not user_data:
+        return JSONResponse(content={"error": "User not found"}, status_code=404)
     return JSONResponse(content=jsonable_encoder(user_data))
