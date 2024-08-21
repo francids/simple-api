@@ -11,6 +11,11 @@ async def root() -> object:
     return JSONResponse(content={"OK": True})
 
 
+@app.get("/ping")
+async def ping() -> object:
+    return JSONResponse(content={"ping": "pong"})
+
+
 @app.get("/users")
 async def get_users() -> object:
     with open("users.json", "r") as file:
