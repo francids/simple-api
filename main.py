@@ -33,3 +33,11 @@ async def get_user(user_id: int) -> object:
     if not user_data:
         return JSONResponse(content={"error": "User not found"}, status_code=404)
     return JSONResponse(content=jsonable_encoder(user_data))
+
+
+@app.get("/posts")
+async def get_posts() -> object:
+    with open("data/posts.json", "r") as file:
+        posts_data = json.load(file)
+
+    return JSONResponse(content=jsonable_encoder(posts_data))

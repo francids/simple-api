@@ -1,0 +1,27 @@
+[
+  {
+    "id": 1,
+    "title": "Introduction to Programming",
+    "content": "In this post, we will explore the basics of programming and learn how to write our first program."
+  },
+  {
+    "id": 2,
+    "title": "Data Structures and Algorithms",
+    "content": "In this post, we will dive into various data structures and algorithms and understand their importance in software development."
+  },
+  {
+    "id": 3,
+    "title": "Web Development with HTML and CSS",
+    "content": "In this post, we will learn how to create a simple website using HTML and CSS, and explore the fundamentals of web development."
+  },
+  {
+    "id": 4,
+    "title": "Introduction to JavaScript",
+    "content": "In this post, we will introduce JavaScript, a powerful programming language used for building interactive web applications."
+  },
+  {
+    "id": 5,
+    "title": "Working with APIs",
+    "content": "In this post, we will explore how to interact with APIs and retrieve data from external sources to enhance our applications."
+  }
+]
