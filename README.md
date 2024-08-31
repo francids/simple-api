@@ -17,3 +17,4 @@ uvicorn main:app --host 0.0.0.0 --port $PORT
 - `/` - Hello World
 - `/users` - List of users
 - `/users/{user_id}` - User detail
+- `/posts` - List of posts
