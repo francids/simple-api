@@ -18,7 +18,7 @@ async def ping() -> object:
 
 @app.get("/users")
 async def get_users() -> object:
-    with open("users.json", "r") as file:
+    with open("data/users.json", "r") as file:
         users_data = json.load(file)
 
     return JSONResponse(content=jsonable_encoder(users_data))
@@ -26,7 +26,7 @@ async def get_users() -> object:
 
 @app.get("/users/{user_id}")
 async def get_user(user_id: int) -> object:
-    with open("users.json", "r") as file:
+    with open("data/users.json", "r") as file:
         users_data = json.load(file)
 
     user_data = [user for user in users_data if user["id"] == user_id] or None
