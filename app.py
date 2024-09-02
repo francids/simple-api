@@ -9,7 +9,7 @@ app: FastAPI = FastAPI()
 
 @app.get("/")
 async def root() -> object:
-    return JSONResponse(content={"OK": True})
+    return JSONResponse(content={"message": "Hello World"})
 
 
 @app.get("/ping")

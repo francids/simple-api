@@ -9,12 +9,13 @@ pip install -r requirements.txt
 ## Usage
 
 ```bash
-uvicorn main:app --host 0.0.0.0 --port $PORT
+uvicorn app:app --host 0.0.0.0 --port $PORT
 ```
 
 ## Routes
 
 - `/` - Hello World
+- `/ping` - Pong
 - `/users` - List of users
 - `/users/{user_id}` - User detail
 - `/posts` - List of posts
