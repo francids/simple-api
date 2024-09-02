@@ -1,7 +1,8 @@
 from fastapi import FastAPI
-from fastapi.encoders import jsonable_encoder
 from fastapi.responses import JSONResponse
-import json
+from routes.users import router as users_router
+from routes.posts import router as posts_router
+
 
 app: FastAPI = FastAPI()
 
@@ -16,28 +17,5 @@ async def ping() -> object:
     return JSONResponse(content={"ping": "pong"})
 
 
-@app.get("/users")
-async def get_users() -> object:
-    with open("data/users.json", "r") as file:
-        users_data = json.load(file)
-
-    return JSONResponse(content=jsonable_encoder(users_data))
-
-
-@app.get("/users/{user_id}")
-async def get_user(user_id: int) -> object:
-    with open("data/users.json", "r") as file:
-        users_data = json.load(file)
-
-    user_data = [user for user in users_data if user["id"] == user_id] or None
-    if not user_data:
-        return JSONResponse(content={"error": "User not found"}, status_code=404)
-    return JSONResponse(content=jsonable_encoder(user_data))
-
-
-@app.get("/posts")
-async def get_posts() -> object:
-    with open("data/posts.json", "r") as file:
-        posts_data = json.load(file)
-
-    return JSONResponse(content=jsonable_encoder(posts_data))
+app.include_router(users_router)
+app.include_router(posts_router)
