@@ -1,8 +1,7 @@
 from fastapi import FastAPI
 from fastapi.responses import JSONResponse
-from routes.users import router as users_router
-from routes.posts import router as posts_router
-
+from app.routes.users import router as users_router
+from app.routes.posts import router as posts_router
 
 app: FastAPI = FastAPI()
 
