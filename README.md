@@ -9,7 +9,7 @@ pip install -r requirements.txt
 ## Usage
 
 ```bash
-uvicorn app.main:app --host 0.0.0.0 --port $PORT
+./start.sh
 ```
 
 ## Routes
