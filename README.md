@@ -1,12 +1,6 @@
 # Simple API
 
-## Installation
-
-```bash
-pip install -r requirements.txt
-```
-
-## Usage
+## Setup
 
 ```bash
 ./start.sh
